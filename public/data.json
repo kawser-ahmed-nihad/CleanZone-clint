@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "Overflowing Dustbin in Mohakhali",
+    "description": "Dustbins have not been emptied for 5 days, causing foul smell and scattered garbage.",
+    "category": "Garbage",
+    "location": "Mohakhali, Dhaka",
+    "image": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=600&auto=format&fit=crop",
+    "amount": 150
+  },
+  {
+    "id": 2,
+    "title": "Plastic Waste Dumping in Park",
+    "description": "People dumping plastic bottles and bags in public park causing environmental hazard.",
+    "category": "Garbage",
+    "location": "Gulshan, Dhaka",
+    "image": "https://images.unsplash.com/photo-1597687209778-358d2f5e3643?q=80&w=600&auto=format&fit=crop",
+    "amount": 200
+  },
+  {
+    "id": 3,
+    "title": "Uncollected Organic Waste",
+    "description": "Organic waste left on street corners attracting stray animals and pests.",
+    "category": "Garbage",
+    "location": "Dhanmondi, Dhaka",
+    "image": "https://images.unsplash.com/photo-1592993090396-81fcb8890ed0?q=80&w=600&auto=format&fit=crop",
+    "amount": 180
+  },
+
+  {
+    "id": 4,
+    "title": "Unauthorized Shop on Footpath",
+    "description": "A shop was built illegally on public footpath, blocking pedestrian access.",
+    "category": "Illegal Construction",
+    "location": "Banani, Dhaka",
+    "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600&auto=format&fit=crop",
+    "amount": 500
+  },
+  {
+    "id": 5,
+    "title": "Encroached Roadside Structure",
+    "description": "Illegal construction encroaching on main road, causing traffic jam.",
+    "category": "Illegal Construction",
+    "location": "Dhanmondi, Dhaka",
+    "image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=600&auto=format&fit=crop",
+    "amount": 400
+  },
+  {
+    "id": 6,
+    "title": "Fence Built in Public Park",
+    "description": "Unauthorized fence built inside a public park restricting public access.",
+    "category": "Illegal Construction",
+    "location": "Uttara, Dhaka",
+    "image": "https://images.unsplash.com/photo-1532375810709-1ff7b9b6c814?q=80&w=600&auto=format&fit=crop",
+    "amount": 450
+  },
+
+  {
+    "id": 7,
+    "title": "Broken Street Light",
+    "description": "Street light not working for a week, creating dark and unsafe streets at night.",
+    "category": "Broken Public Property",
+    "location": "Mirpur, Dhaka",
+    "image": "https://images.unsplash.com/photo-1505843645995-0da3eb1ec2b0?q=80&w=600&auto=format&fit=crop",
+    "amount": 250
+  },
+  {
+    "id": 8,
+    "title": "Damaged Public Bench",
+    "description": "Bench in the park is broken, posing a risk for people sitting.",
+    "category": "Broken Public Property",
+    "location": "Uttara, Dhaka",
+    "image": "https://images.unsplash.com/photo-1610901449970-60c7a31e7d87?q=80&w=600&auto=format&fit=crop",
+    "amount": 150
+  }
+ 
+
+ 
+ 
+]
