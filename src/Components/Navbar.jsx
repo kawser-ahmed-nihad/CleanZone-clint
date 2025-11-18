@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router';
+import useAuth from '../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const dropdownRef = useRef(null);
-
+    const { user, logOut, loading } = useAuth();
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -14,7 +16,33 @@ const Navbar = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-    const nav = true
+
+    const handleLogOut = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will be logged out!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut();
+                Swal.fire("Logged out!", "", "success");
+            }
+        });
+    };
+
+    if (loading) {
+        return (
+            <div className="flex justify-end md:px-16  items-center py-4">
+                <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
+    // const nav = true
     return (
         <div className='bg-white py-4 border-b border-gray-500'>
             <nav className="flex items-center justify-between px-6 md:px-0  md:max-w-11/12 md:mx-auto relative transition-all">
@@ -30,15 +58,18 @@ const Navbar = () => {
                 {/* Desktop Menu */}
                 <div className="hidden sm:flex items-center gap-8">
                     <NavLink to="/" className="block">Home</NavLink>
-                    <NavLink to="/" className="block">Issues</NavLink>
-                    <NavLink to="/" className="block">All Issues</NavLink>
-                    <NavLink to="/" className="block">Add Issues</NavLink>
-                    <NavLink to="/" className="block">My Issues</NavLink>
-                    <NavLink to="/" className="block">My Contribution</NavLink>
+                    <NavLink to="/AllIssues" className="block">All Issues</NavLink>
+                    {
+                        user && <>
+                            <NavLink to="/addissue" className="block">Add Issues</NavLink>
+                            <NavLink to="/myIssues" className="block">My Issues</NavLink>
+                            <NavLink to="/myContribution" className="block">My Contribution</NavLink>
+                        </>
+                    }
 
 
                     {
-                        nav ? (
+                        user ? (
                             <>
 
                                 <div className="relative" ref={dropdownRef}>
@@ -47,7 +78,7 @@ const Navbar = () => {
                                     <button onClick={() => setOpen(!open)} className="flex items-center">
                                         <img
                                             className="rounded-full w-10 h-10 object-cover cursor-pointer border border-gray-200"
-                                            src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=600&h=900&auto=format&fit=crop"
+                                            src={user.photoURL}
                                             alt="profile"
                                         />
                                     </button>
@@ -57,7 +88,7 @@ const Navbar = () => {
                                         <div className="absolute right-0 mt-3 w-40 bg-white shadow-lg rounded-lg   z-50 animate-fadeIn">
 
                                             <button
-                                                onClick={()=>{}}
+                                                onClick={handleLogOut}
                                                 className="w-full text-left px-4 py-2 cursor-pointer"
                                             >
                                                 Logout
@@ -71,12 +102,12 @@ const Navbar = () => {
 
                         ) : (
                             <>
-                                <button className="cursor-pointer px-8 py-2 bg-green-500 hover:bg-green-600 transition text-white rounded-full">
+                                <Link to="/Register" className="cursor-pointer px-8 py-2 bg-green-500 hover:bg-green-600 transition text-white rounded-full">
                                     Register
-                                </button>
-                                <button className="cursor-pointer px-8 py-2 bg-green-500 hover:bg-green-600 transition text-white rounded-full">
+                                </Link>
+                                <Link to="/login" className="cursor-pointer px-8 py-2 bg-green-500 hover:bg-green-600 transition text-white rounded-full">
                                     Login
-                                </button>
+                                </Link>
 
                             </>
 
@@ -96,15 +127,40 @@ const Navbar = () => {
                 {/* Mobile Menu */}
                 <div className={`${open ? 'flex' : 'hidden'} absolute top-[55px] left-0 w-full bg-white z-10  shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
                     <NavLink to="/" className="block">Home</NavLink>
-                    <NavLink to="/" className="block">Issues</NavLink>
-                    <NavLink to="/" className="block">All Issues</NavLink>
-                    <NavLink to="/" className="block">Add Issues</NavLink>
-                    <NavLink to="/" className="block">My Issues</NavLink>
-                    <NavLink to="/" className="block">My Contribution</NavLink>
-                   
-                    <button className="cursor-pointer px-6 py-2 mt-2 bg-green-500 hover:bg-green-600 transition text-white rounded-full text-sm">
-                        Login
-                    </button>
+                    <NavLink to="/AllIssues" className="block">All Issues</NavLink>
+                    {
+                        user && <>
+
+                            <NavLink to="/addissue" className="block">Add Issues</NavLink>
+                            <NavLink to="/myIssues" className="block">My Issues</NavLink>
+                            <NavLink to="/myContribution" className="block">My Contribution</NavLink>
+
+                            <div>
+                                <img
+                                    className="rounded-full w-10 h-10 object-cover cursor-pointer border border-gray-200"
+                                    src={user.photoURL}
+                                    alt="profile"
+                                />
+                            </div>
+                        </>
+                    }
+
+                    {
+                        user ? (<>
+                            <button
+                                onClick={handleLogOut}
+                                className=" text-left px-4 py-2 rounded-xl bg-green-500 hover:bg-green-600 transition cursor-pointer"
+                            >
+                                Logout
+                            </button>
+                        </>) : (<>
+                            <Link to="/login" className="cursor-pointer px-6 py-2 mt-2 bg-green-500 hover:bg-green-600 transition text-white rounded-full text-sm">
+                                Login
+                            </Link>
+                        </>)
+                    }
+
+
                 </div>
 
             </nav >

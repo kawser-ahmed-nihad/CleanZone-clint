@@ -13,7 +13,7 @@ const ExploreIssues = () => {
         }
 
     })
-    console.log(data);
+    // console.log(data);
 
     if (isPending) {
         return <p>data....</p>
