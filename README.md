@@ -1,16 +1,119 @@
-# React + Vite
+# CleanCity - Environmental Issue Reporting App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack MERN application that allows users to report, track, and contribute to cleaning and environmental issues in their local area. Users can post issues, view details, make contributions, and track their own reports.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Live Site**
+[Visit Live Site](https://your-live-site-url.com)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## **Pages & Features**
 
-## Expanding the ESLint configuration
+### 1. **Home Page**
+- Banner with 3 slides: garbage issue, community cleaning, sustainability.
+- Category Section:
+  - Garbage
+  - Illegal Construction
+  - Broken Public Property
+  - Road Damage
+- Recent Complaints: Shows latest 6 issues from MongoDB
+- Community Stats: Total users, total issues resolved/pending
+- Volunteer CTA: Join clean drive
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Design Screenshot:**
+![Home Page](./screenshots/homepage.png)
+
+---
+
+### 2. **Login / Register**
+- Email & Password authentication with Firebase
+- Google Sign-In
+- Validation: Uppercase, lowercase, min 6 characters
+- Redirect to private routes after login
+
+**Design Screenshot:**
+![Login Page](./screenshots/login.png)
+
+---
+
+### 3. **Add Issue Page**
+- Fields: Title, Category, Location, Description, Image URL, Suggested Budget
+- Status auto-set to "ongoing"
+- Success & error messages using SweetAlert
+- Stores issues in MongoDB
+
+**Design Screenshot:**
+![Add Issue](./screenshots/add-issue.png)
+
+---
+
+### 4. **All Issues Page**
+- Displays all issues in a 3-column grid
+- Card shows: Image, Title, Category, Location, Amount
+- “See Details” button for each issue
+
+**Design Screenshot:**
+![All Issues](./screenshots/all-issues.png)
+
+---
+
+### 5. **Issue Details Page**
+- Title, Category, Location, Description, Image, Date, Amount
+- "Pay Clean-Up Contribution" modal with form:
+  - Name, Email, Phone, Address, Amount
+- Contributors Table showing all contributions for the issue
+
+**Design Screenshot:**
+![Issue Details](./screenshots/issue-details.png)
+
+---
+
+### 6. **My Issues Page**
+- Table of issues submitted by the logged-in user
+- Update Button opens modal for editing
+- Delete Button removes issue permanently
+- Status dropdown to change between ongoing/ended
+
+**Design Screenshot:**
+![My Issues](./screenshots/my-issues.png)
+
+---
+
+### 7. **My Contributions Page**
+- Table of contributions made by the logged-in user
+- Columns: Issue Title, Category, Paid Amount, Date
+- Download PDF report for each contribution
+
+**Design Screenshot:**
+![My Contributions](./screenshots/my-contributions.png)
+
+---
+
+## **Tech Stack**
+- Frontend: React.js, Tailwind CSS
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Authentication: Firebase Auth
+- State & Data Fetching: TanStack Query
+- PDF Reports: jsPDF + jspdf-autotable
+
+---
+
+## **GitHub Commits**
+- Minimum 15 commits on client-side
+- Minimum 8 commits on server-side
+- Meaningful commit messages explaining features
+
+---
+
+## **Instructions**
+1. Clone the repository
+2. `npm install` on both client and server
+3. Set up Firebase Authentication and MongoDB URI in `.env`
+4. Run server: `npm run server`
+5. Run client: `npm start`
+
+---
+
